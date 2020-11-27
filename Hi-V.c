@@ -26530,3 +26530,7 @@ void func_840()
     global64 = global64 | 0x10000;
 }
 
+void asd() 
+{
+    // Hello
+}
