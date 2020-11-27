@@ -26529,15 +26529,11 @@ void func_840()
     }
     global64 = global64 | 0x10000;
 }
-
-void asd() 
-{
-    // Hello
-}
-void TETS()
+/////////////////
+///TEST///////////
+/// //////////////
+void func_999()
 {
     if (func_0 = null)
-    {
-        globa0 = 0;
-    }
+        globa0 += 1;
 }
