@@ -521,7 +521,7 @@ int global519;
 int global520;
 int global521;
 int global522;
-int global523;
+int global523_AmmoToDecrease;
 int global524;
 int global525;
 int global526;
@@ -578,8 +578,6 @@ int global576;
 int global577;
 int global578;
 int global579;
-int global580;
-int global581;
 
 void main()
 {
@@ -621,7 +619,7 @@ void func_1()
         global3 = 0;
     }
     func_237();
-    if (sys_0(0x60004, func_0) > 0)
+    if (sys_0(0x60004, main) > 0)
     {
         if ((global8 & 0x3) != 0)
         {
@@ -1837,7 +1835,7 @@ int func_43()
         }
         global68 = func_183(global14);
         global63 = 0;
-        func_830();
+        inputLogic(); // Self made (modified) input logic
         if ((global8 & 0x800) != 0 && global61 > 0)
         {
             if (global69 != 0x2)
@@ -2902,7 +2900,7 @@ int func_60()
         }
     }
     global12 = 0xb;
-    func_74(func_0, 0x1);
+    func_74(main, 0x1);
     return 0x1;
 }
 
@@ -3578,7 +3576,7 @@ void func_81()
         }
         else
         {
-            global127 = func_0;
+            global127 = main;
         }
     }
     else
@@ -3602,7 +3600,7 @@ void func_82()
     }
     else if (global128 & 0x4)
     {
-        global170 = func_0;
+        global170 = main;
     }
     else if (global170 > 0)
     {
@@ -3611,7 +3609,7 @@ void func_82()
         {
             global170 = 0;
             global14 |= 2.0f;
-            global160 = func_0;
+            global160 = main;
         }
     }
     if (global170 > 0)
@@ -5146,7 +5144,7 @@ void func_126()
             }
             else if (global265 & 0x10000)
             {
-                var2 = func_0;
+                var2 = main;
             }
             else if (global265 & 0x20000)
             {
@@ -6356,7 +6354,7 @@ void func_178(int arg0)
     global42 = 0;
 }
 
-void func_179(int arg0)
+void func_179_AddCancelRoute(int arg0)
 {
     global219 = arg0;
     global43 |= global219;
@@ -7062,7 +7060,7 @@ void func_208(int arg0)
     func_216(0x30000000);
 }
 
-void func_209(int arg0)
+void func_209_BackRecoil(int arg0)
 {
     int var1;
     int var2;
@@ -7413,7 +7411,7 @@ void func_239()
 void func_240()
 {
     int var0;
-    var0 = sys_9(0x4, 0x4);
+    var0 = sys_9(0x4, 0x4); // checks EX type and status?
     if (var0 > 0)
     {
         sys_1(0x30011, 0x7, var0);
@@ -9845,7 +9843,7 @@ void func_350()
     int var3;
     int var4;
     global208 |= 0x800;
-    global169 = func_0;
+    global169 = main;
     func_132();
     var0 = 0x32 * (0x64 - global171) / 0x64 + 0x32;
     func_161(var0, var0, var0);
@@ -13627,7 +13625,7 @@ void func_450(int arg0)
     global483 = arg0;
 }
 
-void func_451(int arg0)
+void func_451_FirstMeleeHasei(int arg0)
 {
     global449 = arg0;
     func_444();
@@ -13646,7 +13644,7 @@ void func_453(int arg0, int arg1)
     global446 = arg1 * 0x64;
 }
 
-void func_454(int arg0, int arg1, int arg2)
+void func_454_MeleeHasei(int arg0, int arg1, int arg2)
 {
     global39 |= arg0;
     if (arg0 == 0x1)
@@ -14003,12 +14001,12 @@ void func_468()
     global520 = 0xffffffff;
     global521 = 0xffffffff;
     global522 = 0;
-    global523 = 0;
+    global523_AmmoToDecrease = 0;
     global524 = 0x1;
     global525 = 0x1;
     global526 = 0;
     global527 = 0xffffffff;
-    global528 = func_0;
+    global528 = main;
     global529 = 0x71;
     global530 = 0xa;
     global531 = 0;
@@ -14145,9 +14143,9 @@ void func_471()
         global545 = 0;
         global549 = global547;
         global547 = 0;
-        if (global523 != 0x4)
+        if (global523_AmmoToDecrease != 0x4)
         {
-            if (sys_0(0x50000, global523, 0) == 0)
+            if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
             {
                 global548 = 0x1;
             }
@@ -14238,9 +14236,9 @@ void func_472()
             }
         }
         var0 = 0x1;
-        if (global523 != 0x4)
+        if (global523_AmmoToDecrease != 0x4)
         {
-            if (sys_0(0x50000, global523, 0) == 0)
+            if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
             {
                 var0 = 0;
             }
@@ -14332,9 +14330,9 @@ void func_473()
 {
     int var0;
     var0 = 0x1;
-    if (global523 != 0x4)
+    if (global523_AmmoToDecrease != 0x4)
     {
-        if (sys_0(0x50000, global523, 0) == 0)
+        if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
         {
             var0 = 0;
         }
@@ -14378,9 +14376,9 @@ void func_474()
     {
         var1 = sys_0(0x70010);
         var2 = global529 * 0x64;
-        if (var1 > var2 || var1 < -var2 || global75 == 0x1)
+        if (var1 > var2 || var1 < -var2 || global75 == 0x1) // check if needs to fall down after shoot?
         {
-            if (var0)
+            if (var0) 
             {
                 global552 = 0x1;
                 global551 = 0x1;
@@ -14405,12 +14403,12 @@ void func_474()
             }
         }
     }
-    if (global552 == 0x1)
+    if (global552 == 0x1) // Init turning stuff
     {
         if (global2 == 0x1)
         {
             global552 = 0x2;
-            sys_1(0xa000d, 0x64);
+            sys_1(0xa000d, 0x64); // unit backwards?
             var3 = 0x64;
             var1 = sys_0(0x70010);
             var2 = global529 * 0x64;
@@ -14429,9 +14427,9 @@ void func_474()
                     sys_1(0x60000, 0x1, 0);
                     global553 = 0x64;
                 }
-                else
+                else // flying
                 {
-                    sys_1(0x60000, 0x1, 0x1);
+                    sys_1(0x60000, 0x1, 0x1); // makes it fall? but quite slow
                     global553 = 0x5a + (0x6 * var3 + 0x32) / 0x64;
                 }
             }
@@ -14443,9 +14441,9 @@ void func_474()
             }
         }
     }
-    if (global552 == 0x2)
+    if (global552 == 0x2) // Start turning the unit
     {
-        if (global440 == 0)
+        if (global440 == 0) // always 0?
         {
             if (sys_0(0x7000d) < 0x1f4 || sys_0(0x70014) > 0x1f40 || sys_0(0x70014) < 0xffffe0c0)
             {
@@ -14458,13 +14456,13 @@ void func_474()
             var1 = func_158(var1, global554, 0);
             sys_1(0xa0011, var1);
         }
-        global554 = global554 - global171;
-        if (global554 <= 0)
+        global554 = global554 - global171; // fps? global171 is always 120. So minus 120 every frame. Usually it starts at 1000 (0xA * 64)
+        if (global554 <= 0) // if turn is complete, proceed to 0x3.
         {
             global552 = 0x3;
         }
     }
-    else if (global552 == 0x3)
+    else if (global552 == 0x3) // Turn complete, reset flags?
     {
         global552 = 0x4;
         global568 = 0;
@@ -14698,9 +14696,9 @@ void func_477()
         global549 = global547;
         global547 = 0;
         var4 = 0x1;
-        if (global523 != 0x4)
+        if (global523_AmmoToDecrease != 0x4)
         {
-            if (sys_0(0x50000, global523, 0) == 0)
+            if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
             {
                 var4 = 0;
             }
@@ -14752,9 +14750,9 @@ void func_478()
             var0 = 0x1;
         }
         var1 = 0x1;
-        if (global523 != 0x4)
+        if (global523_AmmoToDecrease != 0x4)
         {
-            if (sys_0(0x50000, global523, 0) == 0)
+            if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
             {
                 var1 = 0;
             }
@@ -15062,9 +15060,9 @@ void func_487()
     func_131(global519);
     func_154(0x5);
     var0 = 0x1;
-    if (global523 != 0x4)
+    if (global523_AmmoToDecrease != 0x4)
     {
-        if (sys_0(0x50000, global523, 0) == 0)
+        if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
         {
             var0 = 0;
         }
@@ -15098,9 +15096,9 @@ void func_488()
             var1 = 0x1;
         }
         var2 = 0x1;
-        if (global523 != 0x4)
+        if (global523_AmmoToDecrease != 0x4)
         {
-            if (sys_0(0x50000, global523, 0) == 0)
+            if (sys_0(0x50000, global523_AmmoToDecrease, 0) == 0)
             {
                 var2 = 0;
             }
@@ -15279,7 +15277,7 @@ void func_496(int arg0, int arg1)
     }
 }
 
-void func_497(int arg0, int arg1, int arg2, int arg3)
+void func_497_MuzzleCorrection(int arg0, int arg1, int arg2, int arg3)
 {
     func_193(arg0, arg1, arg3);
     global556 = arg2;
@@ -16377,7 +16375,7 @@ void func_524()
                     global57 = 0x32;
                 }
             }
-            global275 = func_0;
+            global275 = main;
             if (global278 & 0x4)
             {
                 global298 = 0;
@@ -19658,7 +19656,7 @@ void func_605()
             }
             else
             {
-                func_685(func_0);
+                func_685(main);
             }
             return;
         }
@@ -23399,7 +23397,7 @@ void func_708()
 void func_709()
 {
     global181 = 0;
-    func_721();
+    func_721_RestoreDefaultModelParts();
     global571 = 0;
     global572 = 0;
     global573 = 0;
@@ -23444,7 +23442,7 @@ void func_712()
 
 void func_713()
 {
-    func_721();
+    func_721_RestoreDefaultModelParts();
     sys_24(0x5);
     sys_4C();
     global50 = 0;
@@ -23576,16 +23574,16 @@ void func_720()
     if (sys_2(0x64, global182))
     {
         global380 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
-void func_721()
+void func_721_RestoreDefaultModelParts()
 {
     if (global181 == 0)
     {
         sys_5();
-        sys_4(-0.00016917992616072297f, 0x19, 0xaaffd4ce);
+        sys_4(-0.00016917992616072297f, 0x19, 0xaaffd4ce); // parts to shoot
         sys_4(0x659044ba, 0x1c, -6.466592720893941e+33f);
         sys_4(0xa967e20b, 0x1f, -29834763829248.0f);
         sys_35(0x1, 0, 0x1);
@@ -23736,9 +23734,9 @@ void func_730()
     {
         func_141(func_790, 0x1, 0x2, 0x6);
     }
-    else if (global68 & 0x200)
+    else if (global68 & 0x200) // BC
     {
-        if (global255 == 0)
+        if (global255 == 0) // If Resonance is active
         {
             if (sys_0(0x50006, 0x3) == 0x1)
             {
@@ -23754,17 +23752,17 @@ void func_730()
             func_141(func_815, 0x1, 0x2, 0x9);
         }
     }
-    else if (global68 & 0x100)
+    else if (global68 & 0x100) // AC
     {
-        func_141(func_835, 0x1, 0x1, 0x8);
+        func_141(func_834, 0x1, 0x1, 0x8);
     }
-    else if (global68 & 0x80)
+    else if (global68 & 0x80) // Sub
     {
         func_141(func_806, 0x1, 0x401, 0x7);
     }
     else if (global68 & 0x800)
     {
-        func_141(func_834, 0, 0x1, 0xb);
+        func_141(func_833, 0x0, 0x1, 0xb);
     }
     else if (global68 & 0x1)
     {
@@ -24199,7 +24197,7 @@ void func_755()
     {
         global342++;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         func_134(0x4e, 0);
         func_114(0, 0x4);
         sys_59(0x2, 0x11170, 0x3f806);
@@ -24223,7 +24221,7 @@ void func_756()
     {
         global342++;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_5(-0.00016917992616072297f);
         sys_4(0x24f984cc, 0x19, 0xaaffd4ce);
         sys_4(0x659044ba, 0x1c, -6.466592720893941e+33f);
@@ -24254,7 +24252,7 @@ void func_757()
     {
         global342++;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_22(0x4, -2125204981547008.0f);
         sys_22(0x4, -3.49843982811491e+31f);
         sys_22(0x4, -1.208762842630738e+26f);
@@ -24519,7 +24517,7 @@ void func_762()
     sys_2D(0x3, 0xa, 0xd, 0.6010672450065613f);
 }
 
-void func_763()
+void func_763() // N Melee
 {
     func_411();
     global408 = 0xaa;
@@ -24545,7 +24543,7 @@ void func_764()
     func_412();
 }
 
-void func_765()
+void func_765() // N Melee Approach
 {
     if (global365 == 0)
     {
@@ -24553,16 +24551,16 @@ void func_765()
         sys_8(global182, 0x5c63cc17, global378, 0, 0);
         func_151(0x5);
         func_114(0, 0x4);
-        func_451(func_766);
+        func_451_FirstMeleeHasei(func_766);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_37(0x2, 0x1, 0, 0x64, 0x64, 0x64);
         sys_37(0x2, 0x1, 0x1, 0x64, 0x64, 0x64);
         sys_5C(0x2);
     }
 }
 
-void func_766()
+void func_766() // N Melee Slash / Green Lock
 {
     if (global365 == 0)
     {
@@ -24571,8 +24569,8 @@ void func_766()
         sys_8(global182, 0x81f51592, global378, 0, 0);
         func_452(0xa, 0x12, 0x32);
         func_453(0x2, 0x14);
-        func_454(0x1, 0x14, func_767);
-        func_181(0x100);
+        func_454_MeleeHasei(0x1, 0x14, func_767); // Hasei
+        func_181(0x100); // Cancel Route?
         func_465(0x8, 0x11, 0x1, 0);
         func_114(0, 0x4);
     }
@@ -24593,7 +24591,7 @@ void func_766()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24605,7 +24603,7 @@ void func_767()
         sys_8(global182, -2.4622056780159786e+37f, global378, 0xc8, 0);
         func_452(0x7, 0x10, 0x1e);
         func_453(0x6, 0xf);
-        func_454(0x1, 0xf, func_768);
+        func_454_MeleeHasei(0x1, 0xf, func_768);
         func_181(0x100);
         func_465(0x5, 0xc, 0x1, 0);
         func_114(0, 0x4);
@@ -24627,7 +24625,7 @@ void func_767()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24666,7 +24664,7 @@ void func_768()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24704,9 +24702,9 @@ void func_771()
         sys_8(global182, 0x93ea0090, global378, 0, 0);
         func_151(0x5);
         func_114(0, 0x4);
-        func_451(func_772);
+        func_451_FirstMeleeHasei(func_772);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_4(-1495036416.0f, 0x1a, 0xaaffd4ce);
         sys_4(-9.4104110329791e+22f, 0x15, 0xaaffd4ce, 0xa967e20b);
         sys_35(0x1, 0, 0x1);
@@ -24729,7 +24727,7 @@ void func_772()
         sys_8(global182, 0x4e7cd915, global378, 0, 0);
         func_452(0x3, 0x9, 0x32);
         func_453(0x2, 0x7);
-        func_454(0x1, 0x7, func_773);
+        func_454_MeleeHasei(0x1, 0x7, func_773);
         func_465(0x2, 0x9, 0x4, 0);
         func_114(0, 0x4);
     }
@@ -24758,7 +24756,7 @@ void func_772()
         sys_4(-1495036416.0f, 0x10, 0xaaffd4ce);
         sys_8(-1495036416.0f, 0xaaffd4ce, 0x64, 0);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24823,7 +24821,7 @@ void func_773()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24858,23 +24856,27 @@ void func_776()
     int var0;
     int var1;
     int var2;
+
     if (global365 == 0)
     {
         global365++;
         sys_8(global182, 0x199665f3, global378, 0, 0);
         func_214(0x1000000);
         func_151(0x5);
-        func_451(func_777);
+        func_451_FirstMeleeHasei(func_777);
         func_114(0, 0x4);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_37(0x2, 0x1, 0, 0x64, 0x64, 0x64);
         sys_37(0x2, 0x1, 0x1, 0x64, 0x64, 0x64);
         sys_5C(0x15);
     }
-    if (sys_2(0, global182) >= 0x3e8 && sys_2(0, global182) <= 0x4b0)
+ 
+    // sys_2 seems to be checking the animation frame. So between 1000 to 1200 we do these.
+    if (sys_2(0, global182) >= 0x3e8 && sys_2(0, global182) <= 0x4b0) // stop the floating 
     {
         var0 = (sys_0(0x7000d) - 0x3e8) / 0x50;
+
         if (var0 > 0x64)
         {
             var0 = 0x64;
@@ -24884,6 +24886,7 @@ void func_776()
             var0 = 0;
         }
         var1 = 0;
+
         if (sys_0(0x7000f) < 0)
         {
             var1 = sys_0(0x7000e) / 0x50;
@@ -24914,7 +24917,8 @@ void func_776()
 
 void func_777()
 {
-    global581 = sys_2(0, global182);
+    debug1 = sys_2(0, global182);
+
     if (global365 == 0)
     {
         global365++;
@@ -24923,17 +24927,17 @@ void func_777()
         func_465(0x3, 0xd, 0x1, 0);
         func_114(0, 0x4);
         func_453(0x2, 0x1a);
-        func_454(0x20, 0x1a, func_778);
+        func_454_MeleeHasei(0x20, 0x1a, func_778);
     }
-    if (sys_2(0x2, global182, 0x4b0))
+    if (sys_2(0x2, global182, 0x4b0)) // Slash complete
     {
         global64 = global64 | 0x10000;
     }
-    if (sys_2(0x2, global182, 0x320))
+    if (sys_2(0x2, global182, 0x320)) // hitbox
     {
-        func_199(0x8bb67156);
+        func_199(0x8bb67156); // 0x8BB67156 = 2B's hitbox
     }
-    if (sys_2(0x2, global182, 0x3e8))
+    if (sys_2(0x2, global182, 0x3e8)) // hitbox end?
     {
         func_200();
     }
@@ -24942,7 +24946,7 @@ void func_777()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -24951,17 +24955,17 @@ void func_778()
     func_141(func_779, 0x1, 0x1, 0);
 }
 
-void func_779()
+void func_779() // Back Melee Shooting Hasei (gattlings)
 {
     func_468();
     global518 = func_781;
     global519 = func_782;
     global520 = func_782;
     global521 = func_783;
-    global523 = 0x4;
+    global523_AmmoToDecrease = 0x4;
     global524 = 0x3;
     global525 = 0x3;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xa;
     global538 = 0x14;
     callFunc3(func_780);
@@ -24978,7 +24982,7 @@ void func_781()
     {
         global365++;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_5(-0.00016917992616072297f);
         func_215(0x1000000);
         sys_8(global182, -5.378730202210136e-05f, global378, 0x1f4, 0);
@@ -24986,7 +24990,7 @@ void func_781()
         sys_1(0xa0014, 0x4650, 0xffffe69c, 0x1ae);
         sys_1(0x60000, 0x1, 0);
         func_151(0x5);
-        func_497(0x1, 0x19, 0xa, 0);
+        func_497_MuzzleCorrection(0x1, 0x19, 0xa, 0);
         sys_59(0, 0xc350, 0x3f808);
         func_114(0, 0x4);
     }
@@ -25033,11 +25037,11 @@ void func_783()
         sys_8(global182, -5.378730202210136e-05f, global378, 0, 0xa28);
         func_165(0xa0);
     }
-    if (func_148())
+    if (func_148()) // Check if the Melee is enterring end phase. 
     {
         global380 = 0x1;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         global105 = 0x14;
     }
 }
@@ -25077,9 +25081,9 @@ void func_786()
         func_151(0x5);
         func_456(0x78);
         func_114(0, 0x4);
-        func_451(func_787);
+        func_451_FirstMeleeHasei(func_787);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_37(0x2, 0x1, 0, 0x64, 0x64, 0x64);
         sys_37(0x2, 0x1, 0x1, 0x64, 0x64, 0x64);
         sys_5C(0x14);
@@ -25094,7 +25098,7 @@ void func_787()
         sys_8(global182, 0x5e9685c7, global378, 0, 0);
         func_452(0x4, 0xa, 0x32);
         func_453(0x2, 0xa);
-        func_454(0x1, 0xa, func_788);
+        func_454_MeleeHasei(0x1, 0xa, func_788);
         func_465(0x2, 0x8, 0x1, 0);
         func_114(0, 0x4);
         func_181(0x100);
@@ -25116,11 +25120,11 @@ void func_787()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
-void func_788()
+void func_788() // Side Melee 2nd Slash
 {
     if (global365 == 0)
     {
@@ -25128,7 +25132,7 @@ void func_788()
         sys_8(global182, 0x22f7a01c, global378, 0xc8, 0);
         func_452(0xf, 0x16, 0x1e);
         func_453(0xe, 0x13);
-        func_454(0x1, 0x13, func_789);
+        func_454_MeleeHasei(0x1, 0x13, func_789);
         func_465(0xd, 0x13, 0x1, 0);
         func_114(0, 0x4);
         func_181(0x100);
@@ -25151,7 +25155,7 @@ void func_788()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -25188,11 +25192,11 @@ void func_789()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
-void func_790()
+void func_790() // BD
 {
     func_411();
     global408 = 0xaa;
@@ -25227,17 +25231,17 @@ void func_792()
         func_151(0x5);
         func_442(0xfffffff1, 0, 0);
         func_447(0x1);
-        func_451(func_793);
+        func_451_FirstMeleeHasei(func_793);
         func_114(0x1, 0x4);
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_37(0x2, 0x1, 0, 0x64, 0x64, 0x64);
         sys_37(0x2, 0x1, 0x1, 0x64, 0x64, 0x64);
         sys_5C(0x7);
     }
 }
 
-void func_793()
+void func_793() // BD Slash
 {
     if (global365 == 0)
     {
@@ -25249,7 +25253,7 @@ void func_793()
         func_447(0x1);
         func_452(0x5, 0x8, 0x64);
         func_453(0x2, 0x1e);
-        func_454(0x1, 0x1e, func_794);
+        func_454_MeleeHasei(0x1, 0x1e, func_794);
         func_446();
         func_465(0x2, 0x9, 0x1, 0);
         func_114(0, 0x4);
@@ -25275,7 +25279,7 @@ void func_793()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
@@ -25302,7 +25306,7 @@ void func_794()
             sys_8(global182, 0xa891d437, global378, 0, 0);
             func_452(0x3, 0x8, 0x64);
             func_453(0x3, 0x1b);
-            func_454(0x1, 0x1b, func_795);
+            func_454_MeleeHasei(0x1, 0x1b, func_795);
             func_446();
             func_465(0x1, 0x7, 0x1, 0);
         }
@@ -25326,7 +25330,7 @@ void func_794()
         {
             global380 = 0x1;
             global181 = 0x1;
-            func_721();
+            func_721_RestoreDefaultModelParts();
         }
     }
     if (sys_2(0x2, global182, 0xbb8))
@@ -25379,25 +25383,25 @@ void func_795()
     {
         global380 = 0x1;
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
-void func_796()
+void func_796() // main shoot
 {
     func_468();
     global519 = func_798;
     global520 = 0xffffffff;
     global522 = func_799;
-    global523 = 0;
+    global523_AmmoToDecrease = 0; // which ammo to use
     global524 = 0x1;
     global525 = 0x1;
     global527 = 0xffffffff;
-    global528 = func_0;
-    global529 = 0x71;
-    global530 = 0xa;
-    global539 = 0x19;
-    global540 = 0x9;
+    global528 = main;
+    global529 = 0x71; // Back Shoot max angle
+    global530 = 0xa; // Back Shoot initial turn needed to reduce
+    global539 = 0x19; // Shooting Side Offset
+    global540 = 0x9; 
     global541 = 0xffffffff;
     global542 = 0xffffffff;
     callFunc3(func_797);
@@ -25414,7 +25418,7 @@ void func_798()
     {
         global365++;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         func_492(0x58155d3, 0xd, 0x17);
         func_493(0x659044ba, 0x5e0f228e, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff);
         if (!(sys_0(0x50000, 0, 0) != 0))
@@ -25438,23 +25442,23 @@ void func_799()
     {
         
     }
-    sys_22(global523, 0x6ca29c03);
-    func_179(0x3a0);
+    sys_22(global523_AmmoToDecrease, 0x6ca29c03); // projectile ID
+    func_179_AddCancelRoute(0x3a0);
     sys_50(0);
     global64 = global64 | 0x10000;
 }
 
-void func_800()
+void func_800() // sub
 {
     func_468();
     global518 = func_802;
     global519 = func_803;
     global520 = func_804;
     global521 = func_805;
-    global523 = 0x4;
+    global523_AmmoToDecrease = 0x4;
     global524 = 0x6;
     global525 = 0x1;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xffffffff;
     global538 = 0x14;
     global486 = func_1;
@@ -25602,17 +25606,17 @@ void func_805()
     }
 }
 
-void func_806()
+void func_806() // AC
 {
     func_468();
     global518 = func_808;
     global519 = func_809;
     global520 = func_810;
     global521 = func_811;
-    global523 = 0x1;
+    global523_AmmoToDecrease = 0x1;
     global524 = 0x1;
     global525 = 0x1;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xa;
     global538 = 0x14;
     global579 = 0;
@@ -25633,7 +25637,7 @@ void func_808()
         sys_8(global182, 0x6eec036f, global378, 0, 0);
         func_151(0x5);
         func_165(0x78);
-        func_497(0x1, 0x19, 0xf, 0);
+        func_497_MuzzleCorrection(0x1, 0x19, 0xf, 0);
         func_114(0, 0x4);
         if (!(sys_0(0x50000, 0x2, 0) != 0))
         {
@@ -25663,16 +25667,16 @@ void func_809()
         func_114(0, 0x4);
         sys_8(global182, 0x6eec036f, global378, 0, 0x76c);
         sys_5C(0x5);
-        func_179(0x200);
-        if (global65 & 0x1)
+        func_179_AddCancelRoute(0x200); // Cancel Route
+        if (global65 & 0x1) // if it is cancelled from main
         {
-            sys_22(global523, -0.0005129085038788617f);
+            sys_22(global523_AmmoToDecrease, -0.0005129085038788617f);
         }
         else
         {
-            sys_22(global523, 0x96216ba3);
+            sys_22(global523_AmmoToDecrease, 0x96216ba3);
         }
-        func_209(0x96);
+        func_209_BackRecoil(0x96);
     }
     if (sys_2(0x2, global182, 0x6a4))
     {
@@ -25695,7 +25699,7 @@ void func_810()
             func_114(0, 0x4);
         }
         sys_8(global182, 0x6eec036f, global378, 0, 0x76c);
-        sys_22(global523, 0x96216ba3);
+        sys_22(global523_AmmoToDecrease, 0x96216ba3);
         sys_1(0xe0011, 0x1);
     }
     if (sys_2(0x2, global182, 0x6a4))
@@ -25725,7 +25729,7 @@ void func_811()
     if (func_148())
     {
         global380 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         global105 = 0x14;
     }
 }
@@ -25784,7 +25788,7 @@ void func_814()
     }
 }
 
-void func_815()
+void func_815() // Side BC
 {
     func_411();
     global408 = 0xaa;
@@ -25797,12 +25801,12 @@ void func_815()
     global415 = 0x1e;
     global416 = 0x3e8;
     global417 = 0x7d0;
-    global418 = 0x64;
+    global418 = 0x64; // Post slash momentum
     global419 = 0x5;
-    global420 = 0x50;
-    global421 = 0x5;
-    global422 = func_831;
-    if (global17 & 0x1)
+    global420 = 0x2D; // How long the approach can last, frame?
+    global421 = 0x5; // How long too?
+    global422 = func_830; // func_817
+    if (global17 & 0x1) // Left Right stuff
     {
         global572 = 0x1;
     }
@@ -25825,7 +25829,7 @@ void func_816()
 void func_817()
 {
     int var0;
-    if (global365 == 0)
+    if (global365 == 0) // First Phase, slide left / right
     {
         global365++;
         if (0x1)
@@ -25839,44 +25843,48 @@ void func_817()
             {
                 var0 = 0;
             }
-            var0 = 0x50;
-            if (global572)
+            var0 = 0x50; // always 0x50??
+
+            if (global572) // Left Right
             {
-                sys_8(global182, 0xa665c34c, global378, 0, 0);
-                func_442(-var0, 0, 0xfffffff6);
+                sys_8(global182, 0xa665c34c, global378, 0, 0); // set animation OMO with ID.
+                func_442(-var0, 0, 0xfffffff6); // Var0 = amount of side / angle of side moving, fffffff6 = -10 (resistance to turn??)
             }
             else
             {
-                sys_8(global182, 0x819d8ddb, global378, 0, 0);
+                sys_8(global182, 0x819d8ddb, global378, 0, 0); // set animation OMO with ID.
                 func_442(var0, 0, 0xfffffff6);
             }
             global59 = 0x2;
-            global573 = 0x1;
+            global573 = 0x1; // flag to tell this part has been done
             global417 = 0;
         }
         else
         {
+            // can this ever be reachable?
             global365 = 0x3;
             if (global572)
             {
-                sys_8(global182, 0x7bf31ac9, global378, 0x1f4, 0);
+                sys_8(global182, 0x7bf31ac9, global378, 0x1f4, 0); // set animation OMO with ID.
             }
             else
             {
-                sys_8(global182, 0x5c0b545e, global378, 0x1f4, 0);
+                sys_8(global182, 0x5c0b545e, global378, 0x1f4, 0); // set animation OMO with ID.
             }
             global573 = 0;
         }
+
+        // these are all essential flags. 
         func_151(0x5);
         func_114(0, 0x4);
-        func_451(func_818);
+        func_451_FirstMeleeHasei(func_818); // Slash motion stuff. Hasei
         global181 = 0x1;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_5C(0x1a);
     }
-    else if (global365 == 0x1)
+    else if (global365 == 0x1) // initialize the turning and second phase
     {
-        if (sys_2(0x64, global182) || sys_0(0x7000c) < 0xdac)
+        if (sys_2(0x64, global182) || sys_0(0x7000c) < 0xdac) // If enemy is in range of 0xdac, or if the
         {
             global365++;
             if (global572)
@@ -25891,18 +25899,18 @@ void func_817()
             global417 = 0x7d0;
         }
     }
-    else if (global365 == 0x2)
+    else if (global365 == 0x2) // Turning (second phase is 0x03)
     {
         if (sys_2(0x2, global182, 0x64))
         {
-            sys_1(0xa000d, 0x64);
-            sys_1(0xa0010, 0x5dc);
+            sys_1(0xa000d, 0x64); // make it faster???
+            sys_1(0xa0010, 0x5dc); // make it curve???
             sys_5D(0, 0x52f15e13);
             if (global573 == 0x1)
             {
-                if (global572)
+                if (global572) // Left / Right
                 {
-                    func_442(0xf, 0, 0);
+                    func_442(0xf, 0, 0); // second slash is a little bit sided, so 0xf. Why 0 instead of -10 idk
                 }
                 else
                 {
@@ -25914,7 +25922,7 @@ void func_817()
                 func_442(0, 0, 0);
             }
         }
-        else if (sys_2(0x2, global182, 0x514))
+        else if (sys_2(0x2, global182, 0x514)) // End approach, makes it slash
         {
             global365++;
             global246 = 0xf0;
@@ -25923,25 +25931,25 @@ void func_817()
     }
 }
 
-void func_818()
+void func_818() // Slash?
 {
     if (global365 == 0)
     {
         global365++;
         if (global572)
         {
-            sys_8(global182, -11869.5068359375f, global378, 0x1f4, 0);
+            sys_8(global182, -11869.5068359375f, global378, 0x1f4, 0); // anim
         }
         else
         {
-            sys_8(global182, -4.455371704860892e+20f, global378, 0x1f4, 0);
+            sys_8(global182, -4.455371704860892e+20f, global378, 0x1f4, 0); // anim
         }
         func_452(0x1, 0xa, 0x46);
         func_465(0, 0x4, 0x1, 0);
-        if (global573 == 0x1)
+        if (global573 == 0x1) // if the motion is initialized
         {
-            global415 = 0xc8;
-            func_447(0x1);
+            global415 = 0xc8; // speed 
+            func_447(0x1); // hit?
             if (global572)
             {
                 sys_59(0, 0x1b58, 0x3f805);
@@ -25952,29 +25960,29 @@ void func_818()
             }
         }
     }
-    if (sys_2(0x2, global182, 0x7d0))
+    if (sys_2(0x2, global182, 0x7d0)) // Set end motion flag? 0x00 01 00 22
     {
         global64 = global64 | 0x10000;
     }
-    if (sys_2(0x2, global182, 0x3e8))
+    if (sys_2(0x2, global182, 0x3e8)) // Ending animation time. IDK
     {
         func_165(0x96);
     }
-    if (sys_2(0x2, global182, 0x1194))
+    if (sys_2(0x2, global182, 0x1194)) 
     {
         func_165(0x64);
     }
-    if (sys_2(0x2, global182, 0xc8))
+    if (sys_2(0x2, global182, 0xc8)) 
     {
         if (global573 == 0x1)
         {
             if (global572)
             {
-                func_199(0x1131c033);
+                func_199(0x1131c033); // hit ID
             }
             else
             {
-                func_199(0x5cf96138);
+                func_199(0x5cf96138); // hit ID
             }
         }
         else
@@ -26000,15 +26008,16 @@ void func_819()
     global519 = func_822;
     global520 = 0;
     global522 = func_823;
-    global523 = 0x4;
+    global523_AmmoToDecrease = 0x4;
     global524 = 0x1;
     global525 = 0x1;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xa;
     global538 = 0x14;
     global486 = 0x64;
     global487 = 0x60;
     global488 = 0x60;
+
     callFunc3(func_820);
 }
 
@@ -26024,10 +26033,10 @@ void func_821()
         global365++;
         func_215(0x1000000);
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
         sys_8(global182, 0x10f6433, global378, 0, 0);
         func_151(0x5);
-        func_497(0x1, 0x1, 0x18, 0);
+        func_497_MuzzleCorrection(0x1, 0x1, 0x18, 0);
         func_114(0, 0x4);
         func_165(0x50);
     }
@@ -26046,8 +26055,8 @@ void func_822()
         sys_8(global182, 0x10f6433, global378, 0, 0x76c);
         sys_5C(0x1);
         sys_22(0, -1.191063350055053e+36f, 0x1);
-        func_209(0xc8);
-        func_179(0x3a0);
+        func_209_BackRecoil(0xc8);
+        func_179_AddCancelRoute(0x3a0);
         func_114(0, 0x4);
         global64 = global64 | 0x10000;
     }
@@ -26071,21 +26080,21 @@ void func_823()
         global380 = 0x1;
         global105 = 0x14;
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
 }
 
-void func_824()
+void func_824() // EX Burst
 {
     func_468();
     global518 = func_826;
     global519 = func_827;
     global520 = 0;
     global521 = func_828;
-    global523 = 0x4;
+    global523_AmmoToDecrease = 0x4;
     global524 = 0x1;
     global525 = 0x1;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xa;
     global538 = 0x14;
     func_241();
@@ -26107,7 +26116,7 @@ void func_826()
         func_215(0x1000000);
         sys_8(global182, 0.0002467268204782158f, global378, 0, 0);
         func_151(0x3);
-        func_497(0x1, 0x1, 0x23, 0);
+        func_497_MuzzleCorrection(0x1, 0x1, 0x23, 0);
         sys_5C(0x8);
         func_114(0, 0x4);
         func_722();
@@ -26154,7 +26163,7 @@ void func_827()
         sys_22(0x4, 0xafa11e1e);
         func_240();
         sys_5A(0x2, 0xc8, 0xa0, 0x3e8);
-        func_209(0x64);
+        func_209_BackRecoil(0x64);
     }
     if (sys_2(0x2, global182, 0x13ec))
     {
@@ -26167,7 +26176,7 @@ void func_827()
     if (sys_2(0x2, global182, 0x2d50))
     {
         global181 = 0;
-        func_721();
+        func_721_RestoreDefaultModelParts();
     }
     if (sys_2(0x64, global182))
     {
@@ -26244,9 +26253,16 @@ void func_829()
     0;
 }
 
-void func_830()
+// Custom Code Start
+
+// Remove these debugs to remove the endcard T-pose bug
+int debugIndicator;
+int debug1;
+
+void inputLogic()
 {
-    global580 = 0x12345678;
+    debugIndicator = 0x12345678;
+
     if (global20 != 0 && global68 & 0x400 && func_239())
     {
         func_141(func_824, 0x1, 0x2, 0xa);
@@ -26255,21 +26271,21 @@ void func_830()
     {
         func_141(func_790, 0x1, 0x2, 0x6);
     }
-    else if (global68 & 0x200)
+    else if (global68 & 0x200) // BC
     {
         func_141(func_815, 0x1, 0x2, 0x9);
     }
-    else if (global68 & 0x100)
+    else if (global68 & 0x100) // AC
     {
-        func_141(func_835, 0x1, 0x1, 0x8);
+        func_141(func_834, 0x1, 0x1, 0x8);
     }
-    else if (global68 & 0x80)
+    else if (global68 & 0x80) // Sub
     {
         func_141(func_806, 0x1, 0x401, 0x7);
     }
     else if (global68 & 0x800)
     {
-        func_141(func_834, 0, 0x1, 0xb);
+        func_141(func_833, 0x0, 0x1, 0xb);
     }
     else if (global68 & 0x1)
     {
@@ -26297,14 +26313,15 @@ void func_830()
     }
 }
 
-void func_831()
+void func_830() // Side BC
 {
-    global581 = sys_2(0, global182);
+    debug1 = sys_2(0, global182);
+
     if (global365 == 0)
     {
         global365++;
         func_151(0x5);
-        if (global572)
+        if (global572) // Left or right
         {
             sys_8(global182, 0x7bf31ac9, global378, 0x1f4, 0);
         }
@@ -26313,26 +26330,34 @@ void func_831()
             sys_8(global182, 0x5c0b545e, global378, 0x1f4, 0);
         }
         func_114(0, 0x4);
-        func_456(0x12c);
-        func_451(func_818);
+        func_456(0x12C); // The amount of swing around target (like exia 4/6BC)
+        //func_442(0xf, 0, 0);
+        func_451_FirstMeleeHasei(func_840_SideBCHasei);
         global181 = 0x1;
-        func_721();
-        sys_5C(0x1a);
+        func_721_RestoreDefaultModelParts();
+        sys_5C(0x7);
+
+        func_442(0xfffffff1, 0, 0);
+        func_447(0x1);
+        sys_37(0x2, 0x1, 0, 0x64, 0x64, 0x64);
+        sys_37(0x2, 0x1, 0x1, 0x64, 0x64, 0x64);
+
     }
+
     if (sys_2(0x2, global182, 0x898))
     {
-        global380 = 0x1;
+        global380 = 0x1; // end
     }
 }
 
-void func_832()
+void func_831() // imported from 00's func_882 (Raiser'sCSa)
 {
     if (global365 == 0)
     {
         global365++;
         global181 = 0;
-        func_721();
-        sys_5(-0.00016917992616072297f);
+        func_721_RestoreDefaultModelParts(); // parts where it shoots.
+        sys_5(0xB93165E4); // hide part with ID, 0xB93165E4 = rifle part ID
         sys_8(global182, -5.378730202210136e-05f, global378, 0, 0x3e8);
         func_492(0x58155d3, 0xd, 0x17);
         func_493(0x659044ba, 0x5e0f228e, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff);
@@ -26364,6 +26389,7 @@ void func_832()
         if (sys_2(0x2, global182, 0xfa0) || func_501())
         {
             global366++;
+            //sys_6(0xa29144a6, 0x6a4c13c6, 0x3, 0x3, 0x1); // a29144a6 = cosmetic ID ALEO, 6a4c13c6 = cosmetic ID (projectile). I think something special is done for the cosmetic
             sys_37(0x1, 0x3, 0x1, 0, 0x2328, 0);
         }
     }
@@ -26373,33 +26399,33 @@ void func_832()
     }
     if (sys_2(0x64, global182))
     {
-        func_721();
+        func_721_RestoreDefaultModelParts();
         global380 = 0x1;
     }
 }
 
-void func_833()
+void func_832() 
 {
-    sys_22(0x4, -2.5914743638198848e+35f);
+    sys_22(0x4, 0xFA47A3D2); // projectiles. From func_782 (back melee gattlings)
     sys_1(0x50001, 0, 0);
     if (sys_2(0x64, global182))
     {
-        func_721();
+        func_721_RestoreDefaultModelParts(); // resets the hidden parts
     }
 }
 
-void func_834()
+void func_833() // Modified CSa
 {
     func_468();
-    global519 = func_832;
+    global519 = func_831;
     global520 = 0xffffffff;
-    global522 = func_833;
-    global523 = 0x4;
+    global522 = func_832;
+    global523_AmmoToDecrease = 0x4; // which ammo to reduce, 0x4 = 5th weapon, thus not reducing anything.
     global524 = 0x1;
-    global525 = 0xa;
-    global526 = 0;
+    global525 = 0xA;
+    global526 = 0x0;
     global527 = 0x3;
-    global528 = func_0;
+    global528 = main;
     global529 = 0x71;
     global530 = 0xa;
     global539 = 0xffffffff;
@@ -26409,107 +26435,135 @@ void func_834()
     callFunc3(func_820);
 }
 
-void func_835()
+void func_834() // Modified EX Burst for Mega Bazooka Shoot
 {
     func_468();
-    global518 = func_837;
-    global519 = func_838;
-    global520 = func_839;
-    global521 = func_840;
-    global523 = 0x2;
+    global518 = func_836;
+    global519 = func_837;
+    global520 = func_838;
+    global521 = func_839;
+    global523_AmmoToDecrease = 0x2;
     global524 = 0x1;
     global525 = 0x1;
-    global528 = func_0;
+    global528 = main;
     global530 = 0xa;
     global538 = 0x14;
-    callFunc3(func_836);
+    //func_241(); // Makes boost 0 when initializing attacks on blast burst (because EX)
+    //global83 = 0; // 0 = makes the atack doesn't use any boost
+
+    callFunc3(func_835);
+}
+
+void func_835()
+{
+    func_475();
+    //global9 = 0x1; // makes your action not BD cancellable
 }
 
 void func_836()
 {
-    func_475();
-}
-
-void func_837()
-{
-    if (sys_2(0x2, global182, 0x12c))
-    {
-        if (func_727() <= 0x1)
-        {
-            
-        }
-    }
-    if (sys_2(0x2, global182, 0x514))
-    {
-        func_724();
-    }
-    if (sys_2(0x2, global182, 0x190))
-    {
-        
-    }
     if (global365 == 0)
     {
         global365++;
-        func_215(0x1000000);
-        sys_8(global182, 0.0002467268204782158f, global378, 0, 0x514);
+        func_215(0x1000000); // makes your smooth your landing if on ground if set to 0?
+        sys_8(global182, 0.0002467268204782158f, global378, 0, 0x514); // Let the anim starts at 0x514 = 1300 or 13th frame, as to increase the startup speed
         func_151(0x3);
-        func_497(0x1, 0x19, 0x1c, 0);
+        func_497_MuzzleCorrection(0x1, 0x19, 0x1c, 0); // muzzle correction
         sys_5C(0x4);
         func_114(0, 0x4);
         func_722();
+        //func_209(0xB0); // move back how far
     }
+    if (sys_2(0x2, global182, 0x190))
+    {
+        //sys_59(0, 0x7530, 0x3f80a); // dynamic camera
+    }
+
+    if (sys_2(0x2, global182, 0x514)) 
+    {
+        func_724(); // Spawn the beam gun
+    }
+
+    //global54 = 0x2; // Superarmor
+    if (sys_2(0x2, global182, 0x12c)) // Barriers
+    {
+        if (func_727() <= 0x1)
+        {
+            //sys_22(0x4, 118827.40625f);
+            //sys_22(0x4, 0x6cc54677);
+            //sys_22(0x4, 0x75de7736);
+            //sys_22(0x4, 0.0012198073090985417f);
+            //sys_22(0x4, 0x2384d0b0);
+            //global574 = 0x1;
+        }
+    }
+    /*
+    
+    if (global574 == 0x1)
+    {
+        if (sys_51(0x4) >= 0x1)
+        {
+            global50 = 0x1;
+            sys_23(0x5, 0x2);
+        }
+    }
+    */
+    
     if (sys_2(0x2, global182, 0x1130))
     {
-        global380 = 0x1;
+        global380 = 0x1; // makes it run what's in global519 (func_837), a.k.a shoots.
     }
 }
 
-void func_838()
+void func_837()
 {
     func_728();
     if (global365 == 0)
     {
         global365++;
         func_114(0, 0x4);
-        sys_22(global523, 0x24bfcf39);
-        func_179(0x200);
-        sys_5A(0x2, 0xc8, 0xa0, 0x3e8);
-        func_209(0x100);
+        sys_22(global523_AmmoToDecrease, 0x24BFCF39); // shoots the beam, 0x24 BF CF 39 = self custom made projectile, global523 = nth weapon to reduce ammo 
+        func_179_AddCancelRoute(0x200); // Cancel route
+        //func_240(); // makes blast burst gauge reset when used.
+        sys_5A(0x2, 0xc8, 0xa0, 0x3e8); // Camera zoom out
+        func_209_BackRecoil(0x100); // move back how far
     }
     if (sys_2(0x2, global182, 0x13ec))
     {
-        func_165(0x28);
+        func_165(0x28); // Rigidness. Is this needed at all?
     }
     if (sys_2(0x2, global182, 0x2774))
     {
-        func_165(0xd2);
+        func_165(0xD2); // Rigidness. Lower the more rigid. Time to recover?. Makes it faster
     }
     if (sys_2(0x2, global182, 0x2d50))
     {
-        global181 = 0;
-        func_721();
+        global181 = 0; // end
+        func_721_RestoreDefaultModelParts(); // respawn beam gun
     }
     if (sys_2(0x64, global182))
     {
         global380 = 0x1;
-        sys_5A(0x2, 0x64, 0x64, 0xbb8);
+        sys_5A(0x2, 0x64, 0x64, 0xbb8); // Camera zoom in
     }
 }
 
-void func_839()
+void func_838()
 {
     if (global365 == 0)
     {
         global365++;
+        //sys_8(global182, 0.0002467268204782158f, global378, 0, 0x514);
         func_114(0, 0x4);
         sys_1(0xe0011, 0x2);
     }
     if (sys_2(0x2, global182, 0x2774))
     {
-        global181 = 0;
-        func_721();
-        func_165(0xd2);
+        global181 = 0; // end
+        func_721_RestoreDefaultModelParts();
+        func_165(0xD2); // Rigidness. Lower the more rigid. Time to recover?. Makes it faster
     }
+
     if (sys_2(0x64, global182))
     {
         func_173();
@@ -26517,7 +26571,7 @@ void func_839()
     }
 }
 
-void func_840()
+void func_839()
 {
     if (func_148())
     {
@@ -26529,4 +26583,47 @@ void func_840()
     }
     global64 = global64 | 0x10000;
 }
-// asd
+
+void func_840_SideBCHasei() // BD Slash
+{
+    debug1 = sys_2(0, global182);
+    if (global365 == 0)
+    {
+        global365++;
+        sys_1(0xa0014, 0, 0, 0xc8);
+        global415 = 0x12c;
+        sys_8(global182, -8278807412736.0f, global378, 0, 0);
+        func_442(0xfffffff1, 0, 0);
+        func_447(0x1);
+        func_452(0x5, 0x8, 0x64);
+        func_453(0x2, 0x1e); // 0x1E = Input lag allowance
+        func_454_MeleeHasei(0x1, 0x13, func_788); // 0x13 = Next Hasei lag
+        func_446();
+        func_465(0x2, 0x9, 0x1, 0);
+        func_114(0, 0x4);
+    }
+    if (sys_2(0x2, global182, 0xc80))
+    {
+        global64 = global64 | 0x10000;
+    }
+    if (sys_2(0x2, global182, 0x12c))
+    {
+        func_199(0x5845fff6);
+    }
+    if (sys_2(0x2, global182, 0x2bc))
+    {
+        func_200();
+    }
+    func_294(0x1, 0x2);
+    if (sys_2(0, global182) >= 0x190 && sys_2(0, global182) <= 0x2710)
+    {
+        global82 = global82 * (0xa * (0x64 - global171) / 0x64 + 0x5a) / 0x64;
+    }
+    if (func_148())
+    {
+        global380 = 0x1;
+        global181 = 0x1;
+        func_721_RestoreDefaultModelParts();
+    }
+}
+///asd/s
