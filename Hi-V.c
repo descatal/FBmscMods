@@ -26534,3 +26534,10 @@ void asd()
 {
     // Hello
 }
+void TETS()
+{
+    if (func_0 = null)
+    {
+        globa0 = 0;
+    }
+}
