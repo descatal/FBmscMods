@@ -26498,7 +26498,6 @@ void func_836()
         }
     }
     /*
-    /// asd testa
     if (global574 == 0x1)
     {
         if (sys_51(0x4) >= 0x1)
@@ -26626,4 +26625,3 @@ void func_840_SideBCHasei() // BD Slash
         func_721_RestoreDefaultModelParts();
     }
 }
-//aaa
