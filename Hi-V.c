@@ -6366,10 +6366,10 @@ void func_180(int arg0)
     global43 &= ~arg0;
 }
 
-void func_181(int arg0)
+void func_181_MeleeAddCancelRoute(int arg0)
 {
     global45 = arg0;
-    if (global42)
+    if (global42) // Check if hit?
     {
         global43 |= global45;
     }
@@ -24570,7 +24570,7 @@ void func_766() // N Melee Slash / Green Lock
         func_452(0xa, 0x12, 0x32);
         func_453(0x2, 0x14);
         func_454_MeleeHasei(0x1, 0x14, func_767); // Hasei
-        func_181(0x100); // Cancel Route?
+        func_181_MeleeAddCancelRoute(0x100); // Cancel Route?
         func_465(0x8, 0x11, 0x1, 0);
         func_114(0, 0x4);
     }
@@ -24604,7 +24604,7 @@ void func_767()
         func_452(0x7, 0x10, 0x1e);
         func_453(0x6, 0xf);
         func_454_MeleeHasei(0x1, 0xf, func_768);
-        func_181(0x100);
+        func_181_MeleeAddCancelRoute(0x100);
         func_465(0x5, 0xc, 0x1, 0);
         func_114(0, 0x4);
     }
@@ -24769,7 +24769,7 @@ void func_773()
         func_452(0x1a, 0x36, 0x5a);
         func_114(0, 0x4);
         func_245(0x7);
-        func_181(0x100);
+        func_181_MeleeAddCancelRoute(0x100);
     }
     if (sys_2(0x2, global182, 0x3e8))
     {
@@ -25101,7 +25101,7 @@ void func_787()
         func_454_MeleeHasei(0x1, 0xa, func_788);
         func_465(0x2, 0x8, 0x1, 0);
         func_114(0, 0x4);
-        func_181(0x100);
+        func_181_MeleeAddCancelRoute(0x100);
     }
     if (sys_2(0x2, global182, 0x4b0))
     {
@@ -25135,7 +25135,7 @@ void func_788() // Side Melee 2nd Slash
         func_454_MeleeHasei(0x1, 0x13, func_789);
         func_465(0xd, 0x13, 0x1, 0);
         func_114(0, 0x4);
-        func_181(0x100);
+        func_181_MeleeAddCancelRoute(0x100);
     }
     if (sys_2(0x2, global182, 0x8fc))
     {
@@ -25606,7 +25606,7 @@ void func_805()
     }
 }
 
-void func_806() // AC
+void func_806() // Bazooka
 {
     func_468();
     global518 = func_808;
@@ -26258,6 +26258,9 @@ void func_829()
 // Remove these debugs to remove the endcard T-pose bug
 int debugIndicator;
 int debug1;
+int debug2;
+int debug3;
+int debug4;
 
 void inputLogic()
 {
@@ -26583,7 +26586,7 @@ void func_839()
     global64 = global64 | 0x10000;
 }
 
-void func_840_SideBCHasei() // BD Slash
+void func_840_SideBCHasei() // Modified BD Slash
 {
     debug1 = sys_2(0, global182);
     if (global365 == 0)
@@ -26623,5 +26626,211 @@ void func_840_SideBCHasei() // BD Slash
         global380 = 0x1;
         global181 = 0x1;
         func_721_RestoreDefaultModelParts();
+    }
+}
+
+
+void func_841_SideBCHasei2() // Modified 4/6 Melee 2nd Slash 
+{
+    if (global365 == 0)
+    {
+        global365++;
+        sys_8(global182, 0x22f7a01c, global378, 0xc8, 0);
+        func_452(0xf, 0x16, 0x1e);
+        func_453(0xe, 0x13);
+        func_454_MeleeHasei(0x1, 0x13, func_789);
+        func_465(0xd, 0x13, 0x1, 0);
+        func_114(0, 0x4);
+        func_181_MeleeAddCancelRoute(0x80); // Add cancel route to Sub.
+    }
+    if (sys_2(0x2, global182, 0x8fc))
+    {
+        global64 = global64 | 0x10000;
+    }
+    if (sys_2(0x2, global182, 0x640))
+    {
+        func_199(-0.00010541292431298643f);
+        func_245(0x7);
+    }
+    if (sys_2(0x2, global182, 0x76c))
+    {
+        func_200();
+    }
+    func_294(0xe, 0x1);
+    if (func_148())
+    {
+        global380 = 0x1;
+        global181 = 0x1;
+        func_721_RestoreDefaultModelParts();
+    }
+}
+
+void func_841_SideBCHasei3() // Modified 4/6 Melee 3nd Slash
+{
+    if (global365 == 0)
+    {
+        global365++;
+        sys_8(global182, -1.9394962787628174f, global378, 0xc8, 0);
+        func_452(0x15, 0x1e, 0x46);
+        func_114(0, 0x4);
+        func_181_MeleeAddCancelRoute(0x80); // Add cancel route to Sub.
+    }
+    if (global30)
+    {
+        if (sys_2(0x2, global182, 0x708))
+        {
+            sys_5C(0x16);
+        }
+    }
+    if (sys_2(0x2, global182, 0xc80))
+    {
+        global64 = global64 | 0x10000;
+    }
+    if (sys_2(0x2, global182, 0x898))
+    {
+        func_199(-5.4453799760108246e+26f);
+    }
+    if (sys_2(0x2, global182, 0x960))
+    {
+        func_200();
+    }
+    func_294(0x14, 0x3);
+    if (func_148())
+    {
+        global380 = 0x1;
+        global181 = 0x1;
+        func_721_RestoreDefaultModelParts();
+    }
+}
+
+void func_842_Bazooka() // Bazooka
+{
+    func_468();
+    global518 = func_844_Bazooka;
+    global519 = func_845_Bazooka;
+    global520 = func_846_Bazooka;
+    global521 = func_847_Bazooka;
+    global523_AmmoToDecrease = 0x1;
+    global524 = 0x1;
+    global525 = 0x1;
+    global528 = main;
+    global530 = 0xa;
+    global538 = 0x14;
+    global579 = 0;
+    callFunc3(func_807);
+}
+
+void func_843_Bazooka()
+{
+    func_475();
+}
+
+void func_844_Bazooka()
+{
+    debug1 = sys_2(0, global182);
+    if (global365 == 0)
+    {
+        global365++;
+        func_215(0x1000000);
+        sys_8(global182, 0x6eec036f, global378, 0, 0);
+        func_151(0x5);
+        func_165(0x78);
+        func_497_MuzzleCorrection(0x1, 0x19, 0xf, 0);
+        func_114(0, 0x4);
+        if (!(sys_0(0x50000, 0x2, 0) != 0))
+        {
+            global81 = 0;
+        }
+    }
+    if (sys_2(0x2, global182, 0x190))
+    {
+        func_722();
+    }
+    if (sys_2(0x2, global182, 0x2bc))
+    {
+        func_723();
+    }
+    if (sys_2(0x2, global182, 0x708))
+    {
+        func_173();
+        global380 = 0x1;
+    }
+}
+
+void func_845_Bazooka()
+{
+    debug2 = sys_2(0, global182);
+    if (global365 == 0)
+    {
+        global365++;
+        func_114(0, 0x4);
+        sys_8(global182, 0x6eec036f, global378, 0, 0x76c);
+        sys_5C(0x5);
+        func_179_AddCancelRoute(0x200); // Cancel Route
+        if (global65 & 0x1) // if it is cancelled from main
+        {
+            sys_22(global523_AmmoToDecrease, -0.0005129085038788617f);
+        }
+        else
+        {
+            sys_22(global523_AmmoToDecrease, 0x96216ba3);
+        }
+        func_209_BackRecoil(0x96);
+    }
+    if (sys_2(0x2, global182, 0x6a4))
+    {
+        global64 = global64 | 0x10000;
+    }
+    if (sys_2(0x2, global182, 0xf3c))
+    {
+        func_173();
+        global380 = 0x1;
+    }
+}
+
+void func_846_Bazooka()
+{
+    debug3 = sys_2(0, global182);
+    if (global365 == 0)
+    {
+        global365++;
+        if ((global8 & 0x1000000) != 0)
+        {
+            func_114(0, 0x4);
+        }
+        sys_8(global182, 0x6eec036f, global378, 0, 0x76c);
+        sys_22(global523_AmmoToDecrease, 0x96216ba3);
+        sys_1(0xe0011, 0x1);
+    }
+    if (sys_2(0x2, global182, 0x6a4))
+    {
+        global64 = global64 | 0x10000;
+    }
+    if (sys_2(0x2, global182, 0xf3c))
+    {
+        func_173();
+        global380 = 0x1;
+    }
+}
+
+void func_847_Bazooka()
+{
+    debug4 = sys_2(0, global182);
+    if (global365 == 0)
+    {
+        global365++;
+        func_146(0x3c, 0);
+        sys_8(global182, 0x6eec036f, global378, 0, 0xfa0);
+    }
+    if (sys_2(0x2, global182, 0x1324))
+    {
+        sys_22(0x4, 0x1389cdef);
+        sys_5(-5109485404160.0f);
+    }
+    if (func_148())
+    {
+        global380 = 0x1;
+        func_721_RestoreDefaultModelParts();
+        global105 = 0x14;
     }
 }
