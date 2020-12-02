@@ -518,7 +518,7 @@ int global516;
 int global517;
 int global518;
 int global519;
-int global520;
+int global520_NoAmmo;
 int global521;
 int global522;
 int global523_AmmoToDecrease;
@@ -13998,7 +13998,7 @@ void func_468()
 {
     global518 = 0;
     global519 = 0;
-    global520 = 0xffffffff;
+    global520_NoAmmo = 0xffffffff;
     global521 = 0xffffffff;
     global522 = 0;
     global523_AmmoToDecrease = 0;
@@ -14713,7 +14713,7 @@ void func_477()
             global89 = 0x3;
             global548 = 0x1;
             global64 = global64 | 0x10000;
-            func_131(global520);
+            func_131(global520_NoAmmo);
         }
     }
 }
@@ -24960,7 +24960,7 @@ void func_779() // Back Melee Shooting Hasei (gattlings)
     func_468();
     global518 = func_781;
     global519 = func_782;
-    global520 = func_782;
+    global520_NoAmmo = func_782;
     global521 = func_783;
     global523_AmmoToDecrease = 0x4;
     global524 = 0x3;
@@ -25391,7 +25391,7 @@ void func_796() // main shoot
 {
     func_468();
     global519 = func_798;
-    global520 = 0xffffffff;
+    global520_NoAmmo = 0xffffffff;
     global522 = func_799;
     global523_AmmoToDecrease = 0; // which ammo to use
     global524 = 0x1;
@@ -25453,7 +25453,7 @@ void func_800() // sub
     func_468();
     global518 = func_802;
     global519 = func_803;
-    global520 = func_804;
+    global520_NoAmmo = func_804;
     global521 = func_805;
     global523_AmmoToDecrease = 0x4;
     global524 = 0x6;
@@ -25611,7 +25611,7 @@ void func_806() // Bazooka
     func_468();
     global518 = func_808;
     global519 = func_809;
-    global520 = func_810;
+    global520_NoAmmo = func_810;
     global521 = func_811;
     global523_AmmoToDecrease = 0x1;
     global524 = 0x1;
@@ -26006,7 +26006,7 @@ void func_819()
     func_468();
     global518 = func_821;
     global519 = func_822;
-    global520 = 0;
+    global520_NoAmmo = 0;
     global522 = func_823;
     global523_AmmoToDecrease = 0x4;
     global524 = 0x1;
@@ -26089,7 +26089,7 @@ void func_824() // EX Burst
     func_468();
     global518 = func_826;
     global519 = func_827;
-    global520 = 0;
+    global520_NoAmmo = 0;
     global521 = func_828;
     global523_AmmoToDecrease = 0x4;
     global524 = 0x1;
@@ -26284,7 +26284,7 @@ void inputLogic()
     }
     else if (global68 & 0x80) // Sub
     {
-        func_141(func_806, 0x1, 0x401, 0x7);
+        func_141(func_842_Bazooka, 0x1, 0x401, 0x7);
     }
     else if (global68 & 0x800)
     {
@@ -26316,7 +26316,7 @@ void inputLogic()
     }
 }
 
-void func_830() // Side BC
+void func_830() // Modified Side BC
 {
     debug1 = sys_2(0, global182);
 
@@ -26421,7 +26421,7 @@ void func_833() // Modified CSa
 {
     func_468();
     global519 = func_831;
-    global520 = 0xffffffff;
+    global520_NoAmmo = 0xffffffff;
     global522 = func_832;
     global523_AmmoToDecrease = 0x4; // which ammo to reduce, 0x4 = 5th weapon, thus not reducing anything.
     global524 = 0x1;
@@ -26443,7 +26443,7 @@ void func_834() // Modified EX Burst for Mega Bazooka Shoot
     func_468();
     global518 = func_836;
     global519 = func_837;
-    global520 = func_838;
+    global520_NoAmmo = func_838_MegaBeamCannonNoAmmo;
     global521 = func_839;
     global523_AmmoToDecrease = 0x2;
     global524 = 0x1;
@@ -26550,7 +26550,7 @@ void func_837()
     }
 }
 
-void func_838()
+void func_838_MegaBeamCannonNoAmmo()
 {
     if (global365 == 0)
     {
@@ -26706,13 +26706,13 @@ void func_841_SideBCHasei3() // Modified 4/6 Melee 3nd Slash
 void func_842_Bazooka() // Bazooka
 {
     func_468();
-    global518 = func_844_Bazooka;
-    global519 = func_845_Bazooka;
-    global520 = func_846_Bazooka;
-    global521 = func_847_Bazooka;
+    global518 = func_844_BazookaStart;
+    global519 = func_845_BazookaFire;
+    global520_NoAmmo = func_846_BazookaNoAmmo;
+    global521 = func_847_Bazooka_End;
     global523_AmmoToDecrease = 0x1;
-    global524 = 0x1;
-    global525 = 0x1;
+    global524 = 0x3;
+    global525 = 0x3;
     global528 = main;
     global530 = 0xa;
     global538 = 0x14;
@@ -26725,70 +26725,140 @@ void func_843_Bazooka()
     func_475();
 }
 
-void func_844_Bazooka()
+void func_844_BazookaStart()
 {
     debug1 = sys_2(0, global182);
     if (global365 == 0)
     {
         global365++;
         func_215(0x1000000);
+        sys_5C(0x1);
+        //sys_5A(0x2, 0x78, 0x46, 0xbb8);
         sys_8(global182, 0x6eec036f, global378, 0, 0);
-        func_151(0x5);
-        func_165(0x78);
-        func_497_MuzzleCorrection(0x1, 0x19, 0xf, 0);
+        func_151(0xd);
+        //func_165(0x78); // Frame increment count. Normally is 0x64 (100), but in this case it is changed to 0x78 (120)
+        func_165(0x64);
+        func_497_MuzzleCorrection(0xa, 0x19, 0x5, 0); // Muzzle
         func_114(0, 0x4);
+        sys_1(0x60000, 0x2, 0); // Move to side
+        sys_3(0xa, 0xC8, 0xC8, 0); // Moving stuff
         if (!(sys_0(0x50000, 0x2, 0) != 0))
         {
             global81 = 0;
         }
-    }
-    if (sys_2(0x2, global182, 0x190))
-    {
+
         func_722();
     }
-    if (sys_2(0x2, global182, 0x2bc))
+
+    if (sys_2(0x2, global182, 0x10)) // Spawn bazooka at 0x10
     {
         func_723();
     }
-    if (sys_2(0x2, global182, 0x708))
+
+    if (func_503() == 0x0 && sys_2(0x2, global182, 0x4B0)) // nth shoot
+    {
+        func_173();
+        global380 = 0x1;
+    }
+    else if (func_503() == 0x1 && sys_2(0x2, global182, 0xCE4))
+    {
+        func_173();
+        global380 = 0x1;
+    }
+    else if (func_503() == 0x2 && sys_2(0x2, global182, 0x1838))
     {
         func_173();
         global380 = 0x1;
     }
 }
 
-void func_845_Bazooka()
+void func_845_BazookaFire()
 {
     debug2 = sys_2(0, global182);
     if (global365 == 0)
     {
         global365++;
         func_114(0, 0x4);
-        sys_8(global182, 0x6eec036f, global378, 0, 0x76c);
-        sys_5C(0x5);
-        func_179_AddCancelRoute(0x200); // Cancel Route
-        if (global65 & 0x1) // if it is cancelled from main
+        //sys_8(global182, 0x6eec036f, global378, 0, 0x4B0); // Starts from  0x42C frame
+        //sys_5C(0x5);
+        func_179_AddCancelRoute(0x200); // Add Cancel Route to BC
+        sys_1(0x60000, 0x2, 0); // Move to side
+        sys_3(0xa, 0xC8, 0xC8, 0); // Moving stuff
+        func_172();
+        global369 = 0;
+
+        if (func_503() == 0x1) // nth shoot
         {
-            sys_22(global523_AmmoToDecrease, -0.0005129085038788617f);
+            sys_8(global182, 0x6eec036f, global378, 0, 0x4B0);
         }
-        else
+        else if (func_503() == 0x2)
         {
-            sys_22(global523_AmmoToDecrease, 0x96216ba3);
+            sys_8(global182, 0x6eec036f, global378, 0, 0xCE4);
         }
-        func_209_BackRecoil(0x96);
+        else if (func_503() == 0x3)
+        {
+            sys_8(global182, 0x6eec036f, global378, 0, 0x2134);
+        }
+
+        if (func_503() >= 2) 
+        {
+            if (global65 & 0x1) // if it is cancelled from main
+            {
+                sys_22(global523_AmmoToDecrease, -0.0005129085038788617f);
+            }
+            else
+            {
+                sys_22(global523_AmmoToDecrease, 0x96216ba3);
+            }
+        }
+        else 
+        {
+            if (global65 & 0x1) // if it is cancelled from main
+            {
+                sys_22(0x4, -0.0005129085038788617f);
+            }
+            else
+            {
+                sys_22(0x4, 0x96216ba3);
+            }
+        }
+
     }
-    if (sys_2(0x2, global182, 0x6a4))
+
+    if (func_503() == 0x1 && sys_2(0x2, global182, 0xCE4)) // nth shoot
     {
-        global64 = global64 | 0x10000;
-    }
-    if (sys_2(0x2, global182, 0xf3c))
-    {
+        sys_1(0x50001, 0, 0);
         func_173();
         global380 = 0x1;
     }
+    else if (func_503() == 0x2 && sys_2(0x2, global182, 0x1838))
+    {
+        sys_1(0x50001, 0, 0);
+        func_173();
+        global380 = 0x1;
+    }
+    else if (func_503() == 0x3 && sys_2(0x64, global182))
+    {
+        sys_1(0x50001, 0, 0);
+        func_173();
+        global380 = 0x1;
+    }
+
+    if (sys_2(0, global182) >= 0 && sys_2(0x64, global182))
+    {
+        if (0x1)
+        {
+            if (global29 == sys_0(0x80000))
+            {
+                sys_31(0, 0x1);
+            }
+        }
+    }
+
+    global369 += global171;
 }
 
-void func_846_Bazooka()
+void func_846_BazookaNoAmmo()
 {
     debug3 = sys_2(0, global182);
     if (global365 == 0)
@@ -26813,19 +26883,13 @@ void func_846_Bazooka()
     }
 }
 
-void func_847_Bazooka()
+void func_847_Bazooka_End()
 {
     debug4 = sys_2(0, global182);
     if (global365 == 0)
     {
         global365++;
-        func_146(0x3c, 0);
-        sys_8(global182, 0x6eec036f, global378, 0, 0xfa0);
-    }
-    if (sys_2(0x2, global182, 0x1324))
-    {
-        sys_22(0x4, 0x1389cdef);
-        sys_5(-5109485404160.0f);
+        global64 = global64 | 0x10000;
     }
     if (func_148())
     {
