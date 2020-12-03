@@ -26284,9 +26284,9 @@ void inputLogic()
     }
     else if (global68 & 0x80) // Sub
     {
-        func_141(func_842_Bazooka, 0x1, 0x401, 0x7);
+        func_141(func_842_Bazooka, 0x1, 0x1, 0x7);
     }
-    else if (global68 & 0x800)
+    else if (global68 & 0x800) // CSa
     {
         func_141(func_833, 0x0, 0x1, 0xb);
     }
@@ -26711,8 +26711,8 @@ void func_842_Bazooka() // Bazooka
     global520_NoAmmo = func_846_BazookaNoAmmo;
     global521 = func_847_Bazooka_End;
     global523_AmmoToDecrease = 0x1;
-    global524 = 0x3;
-    global525 = 0x3;
+    global524 = 0x1;
+    global525 = 0x1;
     global528 = main;
     global530 = 0xa;
     global538 = 0x14;
@@ -26733,20 +26733,30 @@ void func_844_BazookaStart()
         global365++;
         func_215(0x1000000);
         sys_5C(0x1);
-        //sys_5A(0x2, 0x78, 0x46, 0xbb8);
         sys_8(global182, 0x6eec036f, global378, 0, 0);
-        func_151(0xd);
+        func_151(0x5);
         //func_165(0x78); // Frame increment count. Normally is 0x64 (100), but in this case it is changed to 0x78 (120)
         func_165(0x64);
-        func_497_MuzzleCorrection(0xa, 0x19, 0x5, 0); // Muzzle
+
+        if (func_503() == 0x0) 
+        {
+            func_497_MuzzleCorrection(0x1, 0x1, 0x14, 0); // Muzzle 
+        }
+        else 
+        {
+            func_497_MuzzleCorrection(0x6, 0x18, 0xC, 0); // Muzzle 
+        }
+        // 1 1 14
+        // 6 18 C
         func_114(0, 0x4);
         sys_1(0x60000, 0x2, 0); // Move to side
-        sys_3(0xa, 0xC8, 0xC8, 0); // Moving stuff
+        sys_3(0xa, 0x64, 0x0, 0); // Moving stuff
         if (!(sys_0(0x50000, 0x2, 0) != 0))
         {
             global81 = 0;
         }
-
+        // func_146(0, 0), 0,0x42
+        func_146(0x42, 0);
         func_722();
     }
 
@@ -26755,17 +26765,7 @@ void func_844_BazookaStart()
         func_723();
     }
 
-    if (func_503() == 0x0 && sys_2(0x2, global182, 0x4B0)) // nth shoot
-    {
-        func_173();
-        global380 = 0x1;
-    }
-    else if (func_503() == 0x1 && sys_2(0x2, global182, 0xCE4))
-    {
-        func_173();
-        global380 = 0x1;
-    }
-    else if (func_503() == 0x2 && sys_2(0x2, global182, 0x1838))
+    if (sys_2(0x2, global182, 0x7D0)) // nth shoot
     {
         func_173();
         global380 = 0x1;
@@ -26783,76 +26783,27 @@ void func_845_BazookaFire()
         //sys_5C(0x5);
         func_179_AddCancelRoute(0x200); // Add Cancel Route to BC
         sys_1(0x60000, 0x2, 0); // Move to side
-        sys_3(0xa, 0xC8, 0xC8, 0); // Moving stuff
+        sys_3(0xa, 0x64, 0x0, 0); // Moving stuff
         func_172();
         global369 = 0;
 
-        if (func_503() == 0x1) // nth shoot
-        {
-            sys_8(global182, 0x6eec036f, global378, 0, 0x4B0);
-        }
-        else if (func_503() == 0x2)
-        {
-            sys_8(global182, 0x6eec036f, global378, 0, 0xCE4);
-        }
-        else if (func_503() == 0x3)
-        {
-            sys_8(global182, 0x6eec036f, global378, 0, 0x2134);
-        }
+        sys_8(global182, 0x6eec036f, global378, 0, 0x7D0); // 4B0
 
-        if (func_503() >= 2) 
+        if (global65 & 0x1) // if it is cancelled from main
         {
-            if (global65 & 0x1) // if it is cancelled from main
-            {
-                sys_22(global523_AmmoToDecrease, -0.0005129085038788617f);
-            }
-            else
-            {
-                sys_22(global523_AmmoToDecrease, 0x96216ba3);
-            }
+            sys_22(0x4, -0.0005129085038788617f);
         }
-        else 
+        else
         {
-            if (global65 & 0x1) // if it is cancelled from main
-            {
-                sys_22(0x4, -0.0005129085038788617f);
-            }
-            else
-            {
-                sys_22(0x4, 0x96216ba3);
-            }
+            sys_22(0x4, 0x96216ba3);
         }
 
     }
 
-    if (func_503() == 0x1 && sys_2(0x2, global182, 0xCE4)) // nth shoot
+    if (sys_2(0x64, global182)) // nth shoot
     {
-        sys_1(0x50001, 0, 0);
         func_173();
         global380 = 0x1;
-    }
-    else if (func_503() == 0x2 && sys_2(0x2, global182, 0x1838))
-    {
-        sys_1(0x50001, 0, 0);
-        func_173();
-        global380 = 0x1;
-    }
-    else if (func_503() == 0x3 && sys_2(0x64, global182))
-    {
-        sys_1(0x50001, 0, 0);
-        func_173();
-        global380 = 0x1;
-    }
-
-    if (sys_2(0, global182) >= 0 && sys_2(0x64, global182))
-    {
-        if (0x1)
-        {
-            if (global29 == sys_0(0x80000))
-            {
-                sys_31(0, 0x1);
-            }
-        }
     }
 
     global369 += global171;
